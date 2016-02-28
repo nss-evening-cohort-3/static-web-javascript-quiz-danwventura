@@ -27,12 +27,14 @@
 
 
 
-// Declaring object that will be passed through growMyTree
+// Declaring object that will be passed through growMyTree within a function
+ var createMyObject = function () {
  var myObject = {
   height:"",
   character:""
  }
-
+ return myObject
+};
 
 // Declaring variables to grab input elements.
   var charType = document.getElementById("character");
@@ -47,9 +49,9 @@
 // Defining button variable to set up event listener for userInp
   var button = document.getElementById("btn");
   button.addEventListener("click", function userInput () {
+    var myObject = createMyObject() 
       myObject.character = charType.value;
       myObject.height = treeHeight.value;
-   
 // Checking for user input values in both boxes
     if (charType === "" || treeHeight === "" ) {
       alert("Please Enter Value for Both Fields");
@@ -57,9 +59,10 @@
       growMyTree (myObject);
     }
   
-  })
-// Building tree 
- function growMyTree(){
+   });
+  
+// Building tree by passing myObject to function
+ function growMyTree(myObject){
     for(i = 1; i <= myObject.height; i++){
     var spacesBefore = myObject.height - i;
     var charNum = (i * 2) - 1;
